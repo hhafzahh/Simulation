@@ -1,0 +1,12 @@
+.center{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+.centerTextBox{
+    position: absolute;
+    top: 70%;
+    left: 40%;
+    width: 200px;
+}

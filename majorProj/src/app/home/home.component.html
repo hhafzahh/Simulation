@@ -1,0 +1,38 @@
+<!-- The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+       {{title}}
+    </h1>
+</div>
+<br>
+<div class="container">
+    <button class="btn btn-primary" style="left: 20px" (click)="createIssue()">Create New</button>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <th scope="col">Ticket number</th>
+            <th scope="col">Occurance Date Time</th>
+            <th scope="col">Requestor Name</th>
+            <th scope="col">Issue Description</th>
+            <th scope="col">Business Area</th>
+            <th scope="col">Status</th>
+            <th scope="col">Remarks</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let issue of issues">
+                <td>{{issue._id }}</td>
+                <td>{{issue.occuranceDateTime }}</td>
+                <td>{{issue.requestorName}}</td>
+                <td>{{issue.description }}</td>
+                <td>{{issue.area }}</td>
+                <td>{{issue.status }}</td>
+                <td>{{issue.remarks }}</td>      
+                <!-- Edit -->
+                <td>
+                    <button class="btn btn-success" (click)="goEditIssueForm(issue)" >Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
