@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { IssueService } from '../issue.service';
 
 @Component({
@@ -11,9 +12,11 @@ import { IssueService } from '../issue.service';
 export class HomeComponent implements OnInit {
   title = 'List of Issues';
   issues: any = [];
-
+  check: boolean = false;
   constructor(private router: Router,
-    private issuesService: IssueService) { }
+    private issuesService: IssueService,private auth:AuthService) { 
+      this.check = this.auth.isAuthenticated;
+    }
 
   ngOnInit(issues: any = []): void {
     // Retrieve posts from the API
@@ -30,5 +33,8 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('issueId', issue._id)
     this.router.navigateByUrl('/issueForm/' + issue._id)
   }
+
+
+  
 
 }

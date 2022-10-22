@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="card" class="col-md-6 offset-md-3 mt-4">
+        <div class="card auth">
+            <div class="card-body auth-card">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+                    <h2 style="color: rgb(19, 18, 16)">Register </h2>
+                    <p class="text-muted mb-4">
+                        Registration takes less than a minute but gives you more permissions
+                        as a user!
+                    </p>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input class="text-muted" formControlName="firstName" id="name"
+                                        placeholder="Your first name" type="text" required />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input class="text-muted" formControlName="lastName" id="name"
+                                        placeholder="Your last name " type="text" required />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input formControlName="username" class="text-muted" id="username"
+                                        placeholder="Your username" type="text" required />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input class="text-muted" formControlName="mobileNum" id="mobileNum"
+                                        placeholder="Your phone number" type="text" required />
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input formControlName="email" class="text-muted" id="email"
+                                        placeholder="Your email" type="text" required />
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <input formControlName="team" class="text-muted" id="team"
+                                        placeholder="Applications / Operations / Portal Admin" type="text" required />
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6" formGroupName="pwSet">
+                            <div class="form-group">
+                                <p>
+                                    <input formControlName="password" id="password" class="text-muted" type="password"
+                                        placeholder="Your password" required />
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" formGroupName="pwSet">
+                            <div class="form-group">
+                                <p>
+                                    <input formControlName="retype" id="password" class="text-muted" type="password"
+                                        placeholder="Retype your password" required />
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+
+                        </div>
+                        <div class="col-sm-12">
+                            <p>
+                                <button [disabled]="!myForm.valid" type="button" class="btn btn-primary" type="submit"
+                                    class="registerbtn">
+                                    Sign Up
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

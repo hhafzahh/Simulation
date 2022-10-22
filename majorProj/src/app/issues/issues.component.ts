@@ -89,7 +89,7 @@ export class IssuesComponent implements OnInit {
       });
 
     alert("Created");
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/home');
     location.reload();
   }
 
@@ -156,7 +156,7 @@ export class IssuesComponent implements OnInit {
       this.issuesForm.value.area, this.issuesForm.value.status, this.issuesForm.value.remarks, "update")
 
     alert("Update Successfully!");
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl('/home')
   }
 
   // onSubmitUpdate() {
@@ -184,7 +184,7 @@ export class IssuesComponent implements OnInit {
   deleteIssue(id: number) {
     this.issuesService.deleteIssueById(id).subscribe(issue => {
       console.log(id);
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/home');
       //location.reload();
     });
   }

@@ -1,0 +1,39 @@
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="card" class="col-md-6 offset-md-3 mt-4">
+        <div class="card auth">
+            <div class="card-body auth-card">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+                    <h3 style="color: rgb(19, 18, 16)">Welcome! </h3>
+                    <h4> Login to access the portal:</h4>
+
+                    <p>
+                        <input formControlName="username" class="text-muted" id="username" placeholder="Your username"
+                            type="text" required />
+                    </p>
+                    <p>
+                        <input formControlName="email" class="text-muted" id="email" placeholder="Your email"
+                            type="text" required />
+                    </p>
+                    <p>
+                        <input formControlName="password" id="password" class="text-muted" type="password"
+                            placeholder="Your password" required />
+                    </p>
+                    <p>
+                        <button [disabled]="!myForm.valid" type="button" class="btn btn-primary" type="submit"
+                            class="loginbtn">
+                            Login
+                        </button>
+                    </p>
+
+                </form>
+
+                <p style="padding-right: 10px; text-align: right; color: rgb(0, 19, 189);" [routerLink]="['/register']">
+                    Dont have an account, click here to sign up here</p>
+            </div>
+        </div>
+    </div>
+</div>

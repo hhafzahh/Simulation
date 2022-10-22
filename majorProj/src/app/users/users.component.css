@@ -1,0 +1,49 @@
+
+
+
+
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: auto;
+    width: 90%;
+   
+  }
+  
+  .table td, .table th {
+    border-width: 2px;
+   
+    padding: 3px;
+  }
+  
+  table .btn{
+      
+      margin: 2px;
+    }
+  
+    .border{
+      width:max-content;
+      padding:10px;
+  }
+  .btn{
+      width: 100px;
+      margin-right:10px;
+  }
+  .fa{
+      
+      margin-right: 10px;
+  }
+  .container{
+      margin-top: 4%;
+      
+  }
+  .card-body{
+      background-color: cornsilk;
+  }
+  
+  table .btn{
+      margin: 2px;
+    }
+  
+  
