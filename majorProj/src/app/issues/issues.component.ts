@@ -102,6 +102,13 @@ export class IssuesComponent implements OnInit {
     })
   }
 
+  onItemChange(value: any) {
+    var radioValue = value;
+    console.log(" Value is : ", radioValue);
+    // sessionStorage.setItem(bankValue, value)
+    // console.log(sessionStorage.getItem(value))
+  }
+
   // public patchIssues(issue:any){
   //   this.issuesForm.patchValue(issue)
   // }

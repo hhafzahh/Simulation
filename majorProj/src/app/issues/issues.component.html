@@ -44,7 +44,28 @@
                         <label for="area">Business Area: </label>
                     </div>
                     <div class="col-sm-6">
-                        <p><input class="form-control" formControlName="area" id=area></p>
+                        <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Analytics - Dashboard
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Portal - website
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Enterprise - Access
+                            </label>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -122,7 +143,28 @@
                             <label for="area">Business Area: </label>
                         </div>
                         <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p>
+                            <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Analytics - Dashboard
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Portal - website
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios3">
+                                    Enterprise - Access
+                                </label>
+                              </div>
                         </div>
                     </div>
                 </div>
