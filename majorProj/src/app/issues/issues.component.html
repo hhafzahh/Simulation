@@ -1,0 +1,289 @@
+<div style="text-align:center">
+    <h1>Issues</h1>
+    <br>
+
+    <form [formGroup]="issuesForm">
+        <!--Create-->
+        <div *ngIf="checkSubmitType() == false">
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="occuranceDateTime">Occurance Date Time: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="occuranceDateTime" id=occuranceDateTime></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="requestorName">Requestor Name: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="requestorName" id=requestorName></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="description">Issue Description: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="description" id=description></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="area">Business Area: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Analytics - Dashboard
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Portal - website
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                              value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Enterprise - Access
+                            </label>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="status">Status: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="status" id=status></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="remarks">Remarks: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="remarks" id=remarks></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <p><button class="btn btn-primary" (click)="onSubmit()">Create new</button> </p>
+            </div>
+        </div>
+
+
+        <!--Update-->
+        <div *ngIf="checkSubmitType() == true">
+    
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="occuranceDateTime">Occurance Date Time: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input class="form-control" formControlName="occuranceDateTime" id="occuranceDateTime"
+                                value={{issue.occuranceDateTime}}></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="requestorName">Requestor Name: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input class="form-control" formControlName="requestorName" id=requestorName
+                                    value={{issue.requestorName}}></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="description">Issue Description: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input class="form-control" formControlName="description" id=description
+                                    value={{issue.description}}></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="area">Business Area: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Analytics - Dashboard
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Portal - website
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                  value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios3">
+                                    Enterprise - Access
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="status">Status: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input class="form-control" formControlName="status" id=status value={{issue.status}}>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="remarks">Remarks: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input class="form-control" formControlName="remarks" id=remarks value={{issue.remarks}}>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p><button class="btn btn-primary" (click)="onSubmitUpdate()">Save Changes</button> </p>
+                    <p><button class="btn btn-danger"(click)="deleteIssue(issue._id)"> Delete Review </button></p>
+                </div>
+            </div>
+        
+
+    </form>
+</div>
+
+
+<!-- <div style="text-align:center">
+    <h1>Issues</h1>
+    <br>
+
+    <form [formGroup]="issuesForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="OccuranceDateTime">Occurance Date Time: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="OccuranceDateTime"
+                            id=OccuranceDateTime>{{issue._id}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="RequestorName">Requestor Name: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="RequestorName" id=RequestorName></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="Description">Issue Description: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="Description" id=Description></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="Area">Business Area: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="Area" id=Area></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="Status">Status: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="Status" id=Status></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-2 col-form-label">
+                    <label for="Remarks">Remarks: </label>
+                </div>
+                <div class="col-sm-6">
+                    <p><input class="form-control" formControlName="Remarks" id=Remarks></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div *ngIf="checkSubmitType() == false">
+                <p><button class="btn btn-primary" type="submit">Save</button> </p>
+            </div>
+            <div *ngIf="checkSubmitType() == true">
+                <p><button class="btn btn-primary" (click)="onSubmitUpdate()">Save</button> </p>
+            </div>
+        </div>
+
+    </form>
+</div> -->

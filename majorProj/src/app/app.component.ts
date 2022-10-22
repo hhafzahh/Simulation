@@ -9,10 +9,10 @@ import { IssueService } from './issue.service';
 export class AppComponent {
   title = 'List of Issues';
 
-  issues: any = [];
+//   issues: any = [];
 
- constructor(private issueService: IssueService) { 
- // Retrieve posts from the API
- this.issueService.getAllIssues().subscribe(issues => {this.issues = issues;});
- }
+//  constructor(private issueService: IssueService) { 
+//  // Retrieve posts from the API
+//  this.issueService.getAllIssues().subscribe(issues => {this.issues = issues;});
+//  }
 }
