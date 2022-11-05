@@ -191,6 +191,7 @@ export class IssuesComponent implements OnInit {
   deleteIssue(id: number) {
     this.issuesService.deleteIssueById(id).subscribe(issue => {
       console.log(id);
+      alert("Delete Successfully!");
       this.router.navigateByUrl('');
       //location.reload();
     });

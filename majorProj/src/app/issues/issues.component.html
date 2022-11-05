@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-md-12">
-                <p><button class="btn btn-primary" (click)="onSubmit()">Create new</button> </p>
+                <p><button class="btn btn-primary" id="createNew" (click)="onSubmit()">Create new</button> </p>
             </div>
         </div>
 
@@ -193,8 +193,8 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <p><button class="btn btn-primary" (click)="onSubmitUpdate()">Save Changes</button> </p>
-                    <p><button class="btn btn-danger"(click)="deleteIssue(issue._id)"> Delete Review </button></p>
+                    <p><button class="btn btn-primary" id="saveChanges" (click)="onSubmitUpdate()">Save Changes</button> </p>
+                    <p><button class="btn btn-danger" id="deleteBtn" (click)="deleteIssue(issue._id)"> Delete Issue </button></p>
                 </div>
             </div>
         
