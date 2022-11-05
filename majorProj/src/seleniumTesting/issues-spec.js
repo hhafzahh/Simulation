@@ -24,6 +24,7 @@ driver.get('http://localhost:4200/').then(function () {
                 driver.findElement(By.id("requestorName")).sendKeys("testUser 1")
                 driver.findElement(By.id("description")).sendKeys("Issue description test")
                 driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[4]/div/div[2]/div[1]/input")).click()
+                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[5]/div/div[2]/div[1]/input")).click()
                 driver.findElement(By.id("status")).sendKeys("Pending test")
                 driver.findElement(By.id("remarks")).sendKeys("testing")
                 //Click on the create btn - insert func
@@ -48,6 +49,8 @@ driver.get('http://localhost:4200/').then(function () {
                     //Test retrieve
                     driver.get("http://localhost:4200/");
                     driver.navigate().refresh();
+                    ///html/body/app-root/app-home/div[2]/table/tbody/tr[5]/td[1]
+                    ///html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[1]
                     let currentTixNum = await driver.findElement(By.xpath("/html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[1]")).getText();
                     driver.findElements(By.xpath("html/body/app-root/app-home/div[2]/table/tbody/tr")).then(function(rowsAfterInsert){
                         let numRowsAfter = rowsAfterInsert.length
@@ -55,15 +58,18 @@ driver.get('http://localhost:4200/').then(function () {
                     if(numRowsAfter = numRows + 1){
                         console.log("Retrieve Issue test: Passed!");
 
-                        //Test update issue - the ticket number corresponds to the id in URL                                         
-                        driver.findElement(By.xpath("/html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[8]/button")).click().then(async found => {
+                        //Test update issue - the ticket number corresponds to the id in URL 
+                        ///html/body/app-root/app-home/div[2]/table/tbody/tr[2]/td[9]/button                                        
+                        driver.findElement(By.xpath("/html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[9]/button")).click().then(async found => {
                             var currentURL = await driver.getCurrentUrl();
                             //console.log("currentURL: ",currentURL) 
                             //console.log( "http://localhost:4200/issueForm/",currentTixNum )
                             if(currentURL == "http://localhost:4200/issueForm/",currentTixNum ){
                                 console.log("Edit btn test: Passed!");
                                 driver.findElement(By.id("status")).sendKeys("Edited")
-                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[7]/p[1]/button")).click().then(async found => {
+                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[4]/div/div[2]/div[2]/input")).click()
+                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[5]/div/div[2]/div[2]/input")).click()
+                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[8]/p[1]/button")).click().then(async found => {
                                     await driver.wait(until.alertIsPresent());
 
                                     // Store the alert in a variable
@@ -86,9 +92,10 @@ driver.get('http://localhost:4200/').then(function () {
                                 
                                 //Test delete issue - the create alert text corresponds
                                 driver.get("http://localhost:4200/")
-                                driver.findElement(By.xpath("/html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[8]/button")).click()
+                                //Click on the edit button from home page
+                                driver.findElement(By.xpath("/html/body/app-root/app-home/div[2]/table/tbody/tr[last()]/td[9]/button")).click()
                                 //driver.sleep(1000);
-                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[7]/p[2]/button")).click().then(async found => {
+                                driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[8]/p[2]/button")).click().then(async found => {
                                     await driver.wait(until.alertIsPresent());
 
                                     // Store the alert in a variable

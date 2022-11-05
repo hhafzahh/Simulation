@@ -10,3 +10,15 @@
     left: 40%;
     width: 200px;
 }
+
+.label{
+    display:block; 
+    width:x; 
+    height:y;
+    text-align: left;
+}
+
+.radioAlignLeft{
+    text-align: left;
+    display:inline;
+}

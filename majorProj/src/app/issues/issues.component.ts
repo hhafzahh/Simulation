@@ -19,6 +19,7 @@ export class IssuesComponent implements OnInit {
     requestorName: new FormControl,
     description: new FormControl,
     area: new FormControl,
+    team: new FormControl,
     status: new FormControl,
     remarks: new FormControl
   })
@@ -51,6 +52,7 @@ export class IssuesComponent implements OnInit {
         requestorName: new FormControl(this.issue.requestorName),
         description: new FormControl(this.issue.description),
         area: new FormControl(this.issue.area),
+        team: new FormControl(this.issue.team),
         status: new FormControl(this.issue.status),
         remarks: new FormControl(this.issue.remarks)
         
@@ -81,6 +83,7 @@ export class IssuesComponent implements OnInit {
       this.issuesForm.value.requestorName,
       this.issuesForm.value.description,
       this.issuesForm.value.area,
+      this.issuesForm.value.team,
       this.issuesForm.value.status,
       this.issuesForm.value.remarks
     )
@@ -95,8 +98,8 @@ export class IssuesComponent implements OnInit {
 
 
   //Update
-  updateIssueById(id: number, occuranceDateTime: string, requestorName: string, description: string, area: string, status: string, remarks: string) {
-    this.issuesService.updateIssueById(id, occuranceDateTime, requestorName, description, area, status, remarks).subscribe(issue => {
+  updateIssueById(id: number, occuranceDateTime: string, requestorName: string, description: string, area: string,team: string, status: string, remarks: string) {
+    this.issuesService.updateIssueById(id, occuranceDateTime, requestorName, description, area, team,status, remarks).subscribe(issue => {
       console.log(issue, "results")
       location.reload();
     })
@@ -128,6 +131,7 @@ export class IssuesComponent implements OnInit {
       this.issuesForm.value.requestorName,
       this.issuesForm.value.description,
       this.issuesForm.value.area,
+      this.issuesForm.value.team,
       this.issuesForm.value.status,
       this.issuesForm.value.remarks,
 
@@ -160,7 +164,7 @@ export class IssuesComponent implements OnInit {
     //console.log(this.issue, "issue@")
     console.log(this.issuesForm.value, "feffwfw")
     console.log(this.issuesForm.value.occuranceDateTime, this.issuesForm.value.requestorName, this.issuesForm.value.description,
-      this.issuesForm.value.area, this.issuesForm.value.status, this.issuesForm.value.remarks, "update")
+      this.issuesForm.value.area, this.issuesForm.value.team, this.issuesForm.value.status, this.issuesForm.value.remarks, "update")
 
     alert("Update Successfully!");
     this.router.navigateByUrl('')

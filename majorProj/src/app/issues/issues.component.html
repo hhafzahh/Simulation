@@ -12,6 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <p><input class="form-control" formControlName="occuranceDateTime" id=occuranceDateTime></p>
+                        <p style= "text-align: left" >(Occurance date: DD/MM/YYYY HH:MM)</p>
                     </div>
                 </div>
             </div>
@@ -19,7 +20,7 @@
             <div class="row">
                 <div class="container">
                     <div class="col-sm-2 col-form-label">
-                        <label for="requestorName">Requestor Name: </label>
+                        <label for="requestorName" >Requestor Name: </label>
                     </div>
                     <div class="col-sm-6">
                         <p><input class="form-control" formControlName="requestorName" id=requestorName></p>
@@ -70,10 +71,44 @@
                 </div>
             </div>
 
+            <br>
             <div class="row">
                 <div class="container">
                     <div class="col-sm-2 col-form-label">
-                        <label for="status">Status: </label>
+                        <label for="team">Assigned Team: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                              value="Analytics Team" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Analytics Team
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                              value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Portal Team
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                              value="Enterprise Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Enterprise Team
+                            </label>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="status" >Status: </label>
                     </div>
                     <div class="col-sm-6">
                         <p><input class="form-control" formControlName="status" id=status></p>
@@ -83,7 +118,7 @@
 
             <div class="row">
                 <div class="container">
-                    <div class="col-sm-2 col-form-label">
+                    <div class="col-sm-2 col-form-label">       
                         <label for="remarks">Remarks: </label>
                     </div>
                     <div class="col-sm-6">
@@ -109,6 +144,7 @@
                         <div class="col-sm-6">
                             <p><input class="form-control" formControlName="occuranceDateTime" id="occuranceDateTime"
                                 value={{issue.occuranceDateTime}}></p>
+                                <p style= "text-align: left" >(Occurance date: DD/MM/YYYY HH:MM)</p>
                         </div>
                     </div>
                 </div>
@@ -168,6 +204,40 @@
                         </div>
                     </div>
                 </div>
+
+                <br>
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-2 col-form-label">
+                            <label for="team">Assigned Team: </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                                  value="Analytics Team" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Analytics Team
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="team" team="team" id="team"
+                                  value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Portal Team
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                                  value="Enterprise Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                <label class="form-check-label" for="exampleRadios3">
+                                    Enterprise Team
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
                 <div class="row">
                     <div class="container">

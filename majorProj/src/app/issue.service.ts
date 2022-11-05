@@ -30,6 +30,7 @@ export class IssueService {
     RequestorName: string,
     Description: string,
     Area: string,
+    Team: string,
     Status: string,
     Remarks: string
   ) {
@@ -38,6 +39,7 @@ export class IssueService {
       'requestorName': RequestorName,
       'description': Description,
       'area': Area,
+      'team': Team,
       'status': Status,
       'remarks': Remarks
     });
@@ -48,12 +50,13 @@ export class IssueService {
   //   console.log(this.getIssueObjUrl)
   // }
   
-  updateIssueById(id: number, occuranceDateTime: string, requestorName: string, description: string, area: string, status: string, remarks: string) {
+  updateIssueById(id: number, occuranceDateTime: string, requestorName: string, description: string, area: string,team: string, status: string, remarks: string) {
     return this.http.put<any[]>(this.getIssueObjUrl + "/" + id, {
       'occuranceDateTime': occuranceDateTime,
       'requestorName': requestorName,
       'description': description,
       'area': area,
+      'team': team,
       'status': status,
       'remarks': remarks
     });
