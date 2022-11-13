@@ -34,11 +34,12 @@ onSubmit(){
       console.log(this.results[0].auth)
       if(this.results[0].auth) {
          
-        //set username &  role in local storage
+        //set username, token &  role in local storage
          localStorage.setItem('username',this.results[0].username)
-         localStorage.setItem('team', this.results[0].team)
+         localStorage.setItem('access_token', this.results[0].token)
+         localStorage.setItem('role',this.results[0].role)
          console.log(this.results[0])
-         
+         //location.reload();
          //navigate to home page
          this.router.navigateByUrl('/home');
       }

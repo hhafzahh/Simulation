@@ -9,7 +9,7 @@
 </div>
 <br>
 <div class="container">
-    <button class="btn btn-primary" style="left: 20px" (click)="createIssue()">Create New</button>
+    <button class="btn btn-primary" style="left: 20px" *ngIf = "userRole == 'Operations Team' " (click)="createIssue()">Create New</button>
     <br>
     <br>
     <table class="table">
@@ -33,7 +33,7 @@
                 <td>{{issue.remarks }}</td>      
                 <!-- Edit -->
                 <td>
-                    <button class="btn btn-success" (click)="goEditIssueForm(issue)" >Edit</button>
+                    <button class="btn btn-success"  (click)="goEditIssueForm(issue)" >Edit</button>
                 </td>
             </tr>
         </tbody>

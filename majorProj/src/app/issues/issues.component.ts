@@ -12,7 +12,8 @@ import { IssueService } from '../issue.service';
 export class IssuesComponent implements OnInit {
  //issuesForm!: FormGroup;
   issue: any = {}
-
+  //define userRole
+  userRole:any;
   //IMPORTANT: If html uses the value property, FormControl is needed
   issuesForm = new FormGroup({
     occuranceDateTime: new FormControl,
@@ -33,7 +34,9 @@ export class IssuesComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.getItem("issueId")
     console.log(sessionStorage.getItem("issueId"), "sessionstorageID")
-
+    //getting the role of the user
+    this.userRole = localStorage.getItem('role');
+    console.log(this.userRole)
     // this.issuesForm.patchValue({
     //   OccuranceDateTime: this.issuesForm.value.OccuranceDateTime,
     //   RequestorName: this.issuesForm.value.RequestorName,

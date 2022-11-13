@@ -19,10 +19,11 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.userRole = localStorage.getItem('team');
+    this.userRole = localStorage.getItem('role');
     console.log(this.userRole);
   }
   logout(){
+    
     this.auth.logout();
     this.router.navigateByUrl('');
   }

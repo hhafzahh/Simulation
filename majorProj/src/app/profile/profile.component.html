@@ -7,10 +7,10 @@
 <h1 style="text-align: center;margin-top: 50px;">Account Details</h1>
 <div class="container">
     <div class="main-body">
-        <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
+        <div class="row gutters-sm"  *ngFor = "let user of user">
+            <div class="col-md-4 mb-3" >
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <div class="d-flex flex-column align-items-center text-center">
                             <i class="fa fa-user"></i>
                             <div class="mt-3">
@@ -131,7 +131,7 @@
                 <div class="form-group">
                     <label for="email">Email </label>
                     <div class="input-group">
-                        <input class="input-group" formControlName="email" id="mobileNum" placeholder="Your email "
+                        <input class="input-group" formControlName="email" id="email" placeholder="Your email "
                             type="text" required />
                     </div>
                 </div>

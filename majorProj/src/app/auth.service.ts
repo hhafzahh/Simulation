@@ -11,11 +11,15 @@ export class AuthService {
   user: any = {};
 
   NAME_KEY = 'username';
+  TOKEN_KEY = 'access_token';
+  ROLE_KEY = 'role'
 
   authuserUrl: string = 'http://localhost:3000/api/authuser/';
   regUserUrl: string = 'http://localhost:3000/api/reguser/';
   getUsersUrl: string = 'http://localhost:3000/api/users/';
   profileUrl: string = 'http://localhost:3000/api/profile/';
+
+  
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -61,19 +65,22 @@ export class AuthService {
   }
 
   //check if user is logged in 
-  get isAuthenticated() { //change to access token in jwt
-    return !!localStorage.getItem(this.NAME_KEY);
+  get isAuthenticated() { 
+    return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
   //logout function
   logout() {
     localStorage.removeItem(this.NAME_KEY);
-    localStorage.removeItem("team");
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.ROLE_KEY);
+    
+
   }
 
-  //get user details based on username
-  getUserDetails(username: any) {
-    return this.http.get<any[]>(this.profileUrl + username);
+  //get user details 
+  getUserDetails() {
+    return this.http.get<any[]>(this.profileUrl);
   }
 
   //edit user function based on user id
@@ -86,6 +93,17 @@ export class AuthService {
   addUser(user: any) {
     return this.http.post(this.getUsersUrl, user);
   }
+
+  IsLoggedIn(){
+    return !!localStorage.getItem(this.TOKEN_KEY);
+
+  }
+
+  //to be used in auth.interceptor.ts
+  getAccessToken(){
+    return localStorage.getItem('access_token');
+  }
+
 
 
 }

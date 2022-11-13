@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
   title = 'List of Issues';
   issues: any = [];
   check: boolean = false;
+
+  //define userRole
+  userRole:any;
+  
   constructor(private router: Router,
     private issuesService: IssueService,private auth:AuthService) { 
       this.check = this.auth.isAuthenticated;
@@ -21,6 +25,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(issues: any = []): void {
     // Retrieve posts from the API
     this.issuesService.getAllIssues().subscribe(issues => { this.issues = issues; })
+
+    //getting the role of the user
+    this.userRole = localStorage.getItem('role');
+    console.log(this.userRole)
   }
 
   public createIssue() {

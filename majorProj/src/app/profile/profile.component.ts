@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   editForm!: FormGroup;
 
   //create a user object
-  user: any = {};
+  user: any;
   results: any;
 
   //setting authenticated as false first
@@ -36,8 +36,8 @@ export class ProfileComponent implements OnInit {
   storedUsername = localStorage.getItem("username");
   constructor(private authService: AuthService, private fb: FormBuilder, private modalService: NgbModal) {
 
-    //get userdetails based on username
-    this.authService.getUserDetails(this.storedUsername).subscribe(data => {
+    //get userdetails
+    this.authService.getUserDetails().subscribe(data => {
       this.user = data;
 
       //check if user is logged in and return boolean based on the values..
@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
     this.modalService.dismissAll();//dismiss modal
     this.authService.editUser(this.editForm.value).subscribe((data) => {
       this.results = data;
-      console.log(this.results.firstName);
+      console.log(this.results);
       location.reload();
     })
   }
