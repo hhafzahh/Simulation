@@ -10,24 +10,39 @@
                     <h3 style="color: rgb(19, 18, 16)">Welcome! </h3>
                     <h4> Login to access the portal:</h4>
 
-                    <p>
-                        <input formControlName="username" class="text-muted" id="username" placeholder="Your username"
-                            type="text" required />
-                    </p>
-                    <p>
-                        <input formControlName="email" class="text-muted" id="email" placeholder="Your email"
-                            type="text" required />
-                    </p>
-                    <p>
-                        <input formControlName="password" id="password" class="text-muted" type="password"
-                            placeholder="Your password" required />
-                    </p>
-                    <p>
-                        <button [disabled]="!myForm.valid" type="button" class="btn btn-primary" type="submit"
-                            class="loginbtn">
-                            Login
-                        </button>
-                    </p>
+
+                    <input formControlName="username" class="text-muted"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="username"
+                        placeholder="Your username" type="text" required />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+
+
+                    <input formControlName="email" class="text-muted" id="email" placeholder="Your email" type="text"
+                        required />
+
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+
+
+                    <input formControlName="password" id="password" class="text-muted" type="password"
+                        placeholder="Your password" required />
+
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" type="submit" class="loginbtn">
+                        Login
+                    </button>
+
+
+
+
+
 
                 </form>
 

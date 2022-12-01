@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder,Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -13,20 +13,32 @@ export class LoginComponent implements OnInit {
   //create FormGroup for the login form
   myForm!: FormGroup;
   results:any = false;
-  
+  submitted = false;
   //dependency injection of FormBuilder as an object call fb
   constructor(private fb: FormBuilder,private authService:AuthService,private router:Router) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      username:new FormControl(''),
-      email:new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('',Validators.required),
+      email:new FormControl('',Validators.required),
+      password: new FormControl('',Validators.required)
+      
     })
 }
+// convenience getter for easy access to form fields
+get f() { return this.myForm.controls; }
 
 //login function and use mongodb database authuser...
 onSubmit(){
+  this.submitted = true;
+
+  if(this.myForm.invalid){
+    
+    //logging for easier troubleshooting
+    console.log('you have submitted an invalid form')
+    return;
+  }
+  
   this.authService.authUser(this.myForm.value.username,this.myForm.value.password).subscribe(data =>
     {
       this.results = data;
@@ -52,5 +64,7 @@ onSubmit(){
 
     });
 }
+
 }
+
 

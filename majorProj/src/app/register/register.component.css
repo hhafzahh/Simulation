@@ -39,4 +39,9 @@ input[type=text], input[type=password] {
     background-color: #697470;
   }
   
+  .invalid-feedback{
+    font-size: 15px;
+    text-align: left;
+    padding-top: 0%;
+  }
  
