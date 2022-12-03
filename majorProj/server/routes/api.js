@@ -157,7 +157,7 @@ router.route('/getIssue/:_id').get(verifyToken,function (req, res){
 //Regiseter user into mongodb
 router.route('/reguser').post(function (req, res) {
     var username = req.body.username;
-    var password = req.body.pwSet.password;
+    var password = req.body.password;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var mobileNum = req.body.mobileNum;
@@ -368,7 +368,7 @@ function verifyToken(req,res,next){
 
     }
     else{
-      //Forbiddin
+      //Forbidden
       res.sendStatus(403);
 
     }

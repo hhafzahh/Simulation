@@ -19,7 +19,7 @@
                     </div>
 
 
-                    <input formControlName="email" class="text-muted" id="email" placeholder="Your email" type="text"
+                    <input formControlName="email" class="text-muted" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" placeholder="Your email" type="text" 
                         required />
 
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -27,7 +27,7 @@
                     </div>
 
 
-                    <input formControlName="password" id="password" class="text-muted" type="password"
+                    <input formControlName="password" id="password" class="text-muted" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password"
                         placeholder="Your password" required />
 
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
