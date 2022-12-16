@@ -93,7 +93,7 @@ export class IssuesComponent implements OnInit {
 
     alert("Created");
     this.router.navigateByUrl('');
-    location.reload();
+    //location.reload();
   }
 
 
