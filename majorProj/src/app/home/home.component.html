@@ -33,7 +33,7 @@
                 <td>{{issue.remarks }}</td>      
                 <!-- Edit -->
                 <td>
-                    <button class="btn btn-success"  (click)="goEditIssueForm(issue)" >Edit</button>
+                    <button class="btn btn-success" *ngIf = "userRole == 'Operations Team' " (click)="goEditIssueForm(issue)" >Edit</button>
                 </td>
             </tr>
         </tbody>
