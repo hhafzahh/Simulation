@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 import { IssueService } from './issue.service';
 
 @Component({
@@ -8,11 +9,4 @@ import { IssueService } from './issue.service';
 })
 export class AppComponent {
   title = 'List of Issues';
-
-//   issues: any = [];
-
-//  constructor(private issueService: IssueService) { 
-//  // Retrieve posts from the API
-//  this.issueService.getAllIssues().subscribe(issues => {this.issues = issues;});
-//  }
 }

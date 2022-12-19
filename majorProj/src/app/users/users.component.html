@@ -1,0 +1,204 @@
+<!--check if user is loggged in and based on that show nav bar-->
+<div *ngIf="checkIfAuthenticated">
+    <app-header></app-header>
+</div>
+<br>
+<br>
+<br>
+<br>
+<button class="btn btn-primary" style="left: 20px; padding: 6px; " (click)="open(createNew)">Create New</button>
+
+<!-- get all users and display them in a table-->
+
+<div class="container" class="center">
+
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Team</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td><span>{{user._id}}</span></td>
+                <td><span>{{user.firstName}}</span></td>
+                <td><span>{{user.lastName}}</span></td>
+                <td><span>{{user.mobileNum}}</span></td>
+                <td><span>{{user.email}}</span></td>
+                <td><span>{{user.username}}</span></td>
+                <td><span>{{user.password}}</span></td>
+                <td><span>{{user.team}}</span></td>
+                <!-- Edit -->
+                <td>
+                    <button class="btn btn-success" (click)="openModal(contentEdit,user)">
+                        <i class="fa fa-edit"></i>
+                        Edit
+                    </button>
+                    <button class="btn btn-danger" (click)="delete(user._id)">
+                        <i class="fa fa-remove"></i>
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- modal for create of new user-->
+<ng-template #createNew let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New User</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="myForm" >
+            <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="firstName" id="name" placeholder="Your first name"
+                        type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="lastName" id="lastName" placeholder="Your last name"
+                        type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobileNum">Mobile Number</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="mobileNum" id="mobileNum"
+                        placeholder="Your mobile number " type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="email" id="mobileNum" placeholder="Your email "
+                        type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="username" id="username" placeholder="Your username "
+                        type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="password" id="password" placeholder="Your password "
+                        type="password" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="role">Team </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="team" id="team"
+                        placeholder="Applications Team/Operations Team/ Portal Admin" type="text" required />
+                </div>
+            </div>
+            <div class="border text-center">
+                <button (click)="create()" data-dismiss="modal" class="btn btn-info" >Save Changes</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+
+<!--modal for edit of user-->
+<ng-template #contentEdit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editMyForm">
+
+            <div class="form-group">
+                <label for="_id">ID</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="_id" placeholder="Your id" type="text" required
+                        readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="firstName" id="firstName" placeholder="Your first name"
+                        type="text" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="lastName" id="lastName" placeholder="Your last name"
+                        type="text" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobileNum">Mobile Number</label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="mobileNum" id="mobileNum"
+                        placeholder="Your mobile number " type="text" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="email" id="mobileNum" placeholder="Your email "
+                        type="text" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="username" id="username" placeholder="Your username "
+                        type="text" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="password" id="password" placeholder="Your password "
+                        type="password" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="role">Team </label>
+                <div class="input-group">
+                    <input class="input-group" formControlName="team" id="team"
+                        placeholder="Applications Team/Operations Team/Portal Admin" type="text" required />
+                </div>
+            </div>
+            <div class="border text-center">
+                <button (click)="edit()" data-dismiss="modal" class="btn btn-info">Save Changes</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

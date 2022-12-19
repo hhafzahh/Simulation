@@ -1,0 +1,54 @@
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="card" class="col-md-6 offset-md-3 mt-4">
+        <div class="card auth">
+            <div class="card-body auth-card">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+                    <h3 style="color: rgb(19, 18, 16)">Welcome! </h3>
+                    <h4> Login to access the portal:</h4>
+
+
+                    <input formControlName="username" class="text-muted"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="username"
+                        placeholder="Your username" type="text" required />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+
+
+                    <input formControlName="email" class="text-muted" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" placeholder="Your email" type="text" 
+                        required />
+
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+
+
+                    <input formControlName="password" id="password" class="text-muted" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password"
+                        placeholder="Your password" required />
+
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" type="submit" class="loginbtn">
+                        Login
+                    </button>
+
+
+
+
+
+
+                </form>
+
+                <p style="padding-right: 10px; text-align: right; color: rgb(0, 19, 189);" [routerLink]="['/register']">
+                    Dont have an account, click here to sign up here</p>
+            </div>
+        </div>
+    </div>
+</div>
