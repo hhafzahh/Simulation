@@ -8,12 +8,13 @@ const driver = new webdriver.Builder()
 
 driver.get('http://localhost:4200').then(function () {
 
-    driver.findElement(By.id("username")).sendKeys("Username")
-    driver.findElement(By.id("email")).sendKeys("EmailAddress")
-    driver.findElement(By.id("password")).sendKeys("Password")
+    driver.findElement(By.id("username")).sendKeys("testUser")
+    driver.findElement(By.id("email")).sendKeys("testUser@email.com")
+    driver.findElement(By.id("password")).sendKeys("testuser")
     driver.findElement(By.xpath("/html/body/app-root/app-login/div/div/div/div/form/button")).click().then(function () {
         
         driver.sleep(1000);
+        driver.navigate().refresh();
         driver.get('http://localhost:4200/home')
         driver.getTitle().then(title => {
             if (title.localeCompare("List of Issues")) {
