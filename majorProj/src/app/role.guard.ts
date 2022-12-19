@@ -9,7 +9,7 @@ export class RoleGuard implements CanActivate {
   constructor(private authService:AuthService,private router:Router){}
   canActivate() {
     let Role = localStorage.getItem(this.authService.ROLE_KEY);
-    if(Role == "Portal Admin"){
+    if(Role == "Ops Team"){
       return true;
     }
     else{

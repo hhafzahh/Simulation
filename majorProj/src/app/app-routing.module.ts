@@ -12,7 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
 
 const routes: Routes = [
-  { path: 'issueForm/:id', component: IssuesComponent,canActivate:[AuthGuard]},
+  { path: 'issueForm/:id', component: IssuesComponent,canActivate:[RoleGuard]},
   { path: 'home', component: HomeComponent,canActivate:[AuthGuard] },
   { path: 'register', component: RegisterComponent},
   { path: '', component: LoginComponent},

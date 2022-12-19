@@ -86,28 +86,21 @@
                                     Team:</p>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" formControlName="team" name="team"
-                                        id="team" value="Dashboard Team" checked [checked]="true"
+                                        id="team" value="Apps Team" checked [checked]="true"
                                         (change)="onItemChange($any($event.target).value)">
                                     <label class="form-check-label" for="exampleRadios1">
-                                        Dashboard Team
+                                        Application Team
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                     <input class="form-check-input" type="radio" formControlName="team" name="team"
-                                        id="team" value="Portal Admin" [checked]="true" 
+                                        id="team" value="Ops Team" [checked]="true" 
                                         (change)="onItemChange($any($event.target).value)">
                                     <label class="form-check-label" for="exampleRadios2">
-                                        Portal Admin
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
-                                    <input class="form-check-input" type="radio" formControlName="team" name="team"
-                                        id="team" value="Operations Team" [checked]="true"
-                                        (change)="onItemChange($any($event.target).value)">
-                                    <label class="form-check-label" for="exampleRadios3">
                                         Operations Team
                                     </label>
                                 </div>
+                                
 
                                 <div *ngIf="submitted && f.team.errors" class="invalid-feedback">
                                     <div *ngIf="f.team.errors.required">Team is required</div>

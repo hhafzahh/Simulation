@@ -68,7 +68,7 @@ router.route('/createIssue').post(verifyToken,function (req, res) {
         if(err){
             res.sendStatus(403)
         }
-        if( authData.role != 'Operations Team'){
+        if( authData.role != 'Ops Team'){
             res.sendStatus(403)
             console.log('you dont have the access rights to create issues')
         }
@@ -93,7 +93,7 @@ router.route('/getIssue/:_id').put(verifyToken, function (req, res) {
             res.sendStatus(403);
             console.log(authData)
         }
-        if(authData.role != 'Operations Team'){
+        if(authData.role != 'Ops Team'){
             res.sendStatus(403);
             console.log(authData.role)
         }
@@ -117,7 +117,7 @@ router.route('/getIssue/:_id').delete(verifyToken,function (req, res) {
             res.sendStatus(403);
             console.log('no token')
         }
-        if(authData.role != 'Operations Team'){
+        if(authData.role != 'Ops Team'){
             res.sendStatus(403);
             console.log(authData.role)
         }
@@ -214,7 +214,7 @@ router.route("/users").get(verifyToken,function (req, res) {
             res.sendStatus(403);
             console.log(authData)
         }
-        if(authData.role != 'Portal Admin'){
+        if(authData.role != 'Ops Team'){
             res.sendStatus(403);
             console.log(authData.role);
         }
@@ -231,14 +231,14 @@ router.route("/users").get(verifyToken,function (req, res) {
 
 
 //Delete user by id
-//Only Portal Admin can delete user - user needs to be logged in and has a token role of "Portal Admin"
+//Only Ops Team can delete user - user needs to be logged in and has a token role of "Ops Team"
 router.route('/users/:_id').delete(verifyToken,function (req, res) {
     jwt.verify(req.token,secret,(err,authData)=>{
         if(err){
             res.sendStatus(403);
             console.log(authData)
         }
-        if(authData.role != 'Portal Admin'){
+        if(authData.role != 'Ops Team'){
             res.sendStatus(403);
             console.log(authData.role)
 
@@ -313,14 +313,14 @@ router.route('/profile/:_id').put(verifyToken,function (req, res) {
 });
 
 //Create new user 
-//onnly if user is logged in with a token role of "Portal Admin" 
+//onnly if user is logged in with a token role of "Ops Team" 
 router.route("/users").post(verifyToken,function (req, res) {
     jwt.verify(req.token,secret,(err,authData)=>{
         if(err){
             res.sendStatus(403);
 
         }
-        if(authData.role != 'Portal Admin'){
+        if(authData.role != 'Ops Team'){
             res.sendStatus(403);
             console.log(authData.role)
         }
