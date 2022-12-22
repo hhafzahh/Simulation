@@ -1,0 +1,41 @@
+pipeline {
+  agent any
+  tools {nodejs "Node-Build"}
+    
+  stages {
+        
+    stage('Git') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/Jenkins_Demo_Hafsah']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/MP_2022.git']]])
+      }
+    }
+    stage('Build Project') {
+        steps {
+           dir("majorProj"){
+                bat 'docker-compose build'
+            }
+        }
+    } 
+    stage('Deliver'){
+        parallel{
+            stage('Run'){
+                steps{
+                    dir("majorProj"){
+                        bat 'docker-compose up'
+                    }
+                }
+            }
+            stage('Stop'){
+                steps{
+                    input('Proceed to stop server?')
+                    dir("majorProj"){
+                        bat 'docker-compose down'
+                    }
+                }
+            }
+        }
+    }
+        
+  }
+}
+    
