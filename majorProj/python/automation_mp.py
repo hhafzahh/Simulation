@@ -6,7 +6,7 @@ import certifi
 import pymongo
 from pymongo import MongoClient
 
-client = MongoClient("yourString", tlsCAFile=certifi.where())
+client = MongoClient("mongodb+srv://test1:testone1@cluster0.s4jld.mongodb.net/Major-Proj?retryWrites=true&w=majority", tlsCAFile=certifi.where())
 # Database Name
 db = client["Major-proj"]
  
@@ -171,14 +171,14 @@ mail_settings = {
 "MAIL_USE_TLS": False,
 "MAIL_USE_SSL": True,
 "MAIL_PORT": 465,
-"MAIL_USERNAME": "senderEmail",
-"MAIL_PASSWORD": "senderEmailPW"
+"MAIL_USERNAME": "mp.hjtest@gmail.com",
+"MAIL_PASSWORD": "nrqmlxfeblevvbbp"
 }
 
 app.config.update(mail_settings)
 mail = Mail(app)
 
-receiver_list = ['receiverEmail']
+receiver_list = ['majorprojectreceiver@gmail.com']
 
 with app.app_context():
     msg = Message(sender=app.config.get("MAIL_USERNAME"), recipients=receiver_list)
