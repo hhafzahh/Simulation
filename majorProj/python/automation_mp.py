@@ -197,6 +197,6 @@ with app.app_context():
 df
 
 # %%
-df.to_csv('data/MP_dataset.csv', index = False)
+df.to_csv('MP_dataset.csv', index = False)
 
 
