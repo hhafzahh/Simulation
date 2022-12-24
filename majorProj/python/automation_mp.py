@@ -80,7 +80,7 @@ print(df)
 
 # %%
 #Working - Handle missing values: Fill all blanks and 'N.A.' to NaN
-df = df.replace(['','N.A.', 'NA','na','n.a.', 'nil', 'NIL', 'Nil', 'NIl', 'niL','None'], np.NaN)
+df = df.replace(['','N.A.', 'NA','na','n.a.', 'nil', 'NIL', 'Nil', 'NIl', 'niL','None'], 'NaN')
 df
 
 # %% [markdown]
