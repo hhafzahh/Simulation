@@ -3,19 +3,34 @@ pipeline {
   tools {nodejs "Node-Build"}
     
   stages {
-        
+
+     //Checkout Git Stage 
     stage('Git') {
       steps {
         checkout([$class: 'GitSCM', branches: [[name: '*/Jenkins_Demo_Hafsah']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/MP_2022.git']]])
       }
     }
+
+    //Build stage: Build the frontend & backend of the application 
+    //assuming docker desktop is running in the background
     stage('Build Project') {
         steps {
            dir("majorProj"){
                 bat 'docker-compose build'
             }
         }
-    } 
+    }
+
+    //Test Stage
+    stage('Test'){
+        steps{
+            //need to add testing here
+            echo 'test'
+        }
+    }
+
+    //Run the application
+    //Stop application only with an interactive proceed input
     stage('Deliver'){
         parallel{
             stage('Run'){
@@ -35,7 +50,17 @@ pipeline {
             }
         }
     }
-        
+    
+    //Clean the data in MongoDB Database
+    //Output the .csv file in jenkins workspace
+    stage('Build & Run Python file'){
+        steps{
+            dir("majorProj/python"){
+                bat 'docker-compose build'
+                bat 'docker-compose up'
+            }
+        }
+    }   
   }
 }
     
