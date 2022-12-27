@@ -6,7 +6,7 @@ import certifi
 import pymongo
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://test1:testone1@cluster0.s4jld.mongodb.net/Major-Proj?retryWrites=true&w=majority", tlsCAFile=certifi.where())
+client = MongoClient("mongodb+srv://test1:testone1@cluster0.s4jld.mongodb.net/Major-proj?retryWrites=true&w=majority", tlsCAFile=certifi.where())
 # Database Name
 db = client["Major-proj"]
  
@@ -80,7 +80,7 @@ print(df)
 
 # %%
 #Working - Handle missing values: Fill all blanks and 'N.A.' to NaN
-df = df.replace(['','N.A.', 'NA','na','n.a.', 'nil', 'NIL', 'Nil', 'NIl', 'niL',np.nan], 'NaN')
+df = df.replace(['','N.A.', 'NA','na','n.a.', 'nil', 'NIL', 'Nil', 'NIl', 'niL'], np.NaN)
 df
 
 # %% [markdown]
@@ -142,18 +142,23 @@ for words in description:
     #find those words that may be misspelled
     misspelled = list(spell.unknown(cleanedWords))
     #print("Possible list of misspelled words in the original text:\n",misspelled)
-    #print(misspelled)
     
+    #print(' '.join(misspelled))
+    #missspelled_row = ' '.join(misspelled)
+    #print(descriptionTB)
     for word in misspelled:
         correctWord = spell.correction(word)
         joined = [correctWord.join(correctWord)]
     descriptionTBNew = ''.join(descriptionTB.correct())
     #print(descriptionTBNew, "descriptionTBNew")
-
-if len(misspelled) > 0:
-    #print(index, descriptionTBNew, "descriptionTBNew")
-    df.loc[index, "description"] = descriptionTBNew
     
+    #print(len(misspelled))
+    if len(misspelled) > 0:
+        for index, row in df.iterrows():
+            if row['description'] == descriptionTB:
+                #print(index)
+                df.loc[index, "description"] = descriptionTBNew
+
 df
 
 # %% [markdown]
@@ -197,6 +202,6 @@ with app.app_context():
 df
 
 # %%
-df.to_csv('MP_dataset.csv', index = False)
+df.to_csv('MP_dataset.csv', index = False, na_rep=np.NaN)
 
 
