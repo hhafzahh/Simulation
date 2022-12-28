@@ -42,9 +42,10 @@ export class AuthService {
 
 
   //authenticates user based on the mongodb based on the form details
-  authUser(username: string, pw: string) {
+  authUser(username: string,email:string, pw: string) {
     return this.http.post<any[]>(this.authuserUrl, {
       username: username,
+      email:email,
       password: pw
     })
   }

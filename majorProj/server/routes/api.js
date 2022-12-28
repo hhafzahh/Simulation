@@ -183,9 +183,10 @@ router.route('/reguser').post(function (req, res) {
 //Authenticate login & generate JWT
 router.route('/authuser').post(function (req, res2) {
     var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
     var user = req.body;
-    db.collection('users').findOne({ "username": username }, { password: 1, role: 1, _id: 0 }, function (err, result) {
+    db.collection('users').findOne({ "username": username, "email":email}, { password: 1, role: 1, _id: 0 }, function (err, result) {
         console.log(result)
         if (result == null) res2.send([{ "auth": false }]);
         else {

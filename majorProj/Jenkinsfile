@@ -17,21 +17,32 @@ pipeline {
         steps {
            dir("majorProj"){
                 bat 'docker-compose build'
+                script{
+                    withDockerRegistry(credentialsId: 'credentials') {
+                        //push image into dockerhub
+                        bat 'docker-compose push'
+                    }
+                }
             }
         }
     }
 
     //Test Stage
-    stage('Test'){
+    /*stage('Test'){
         steps{
-            //need to add testing here
-            echo 'test'
+            dir("majorProj/src/seleniumTesting"){
+                
+                bat 'npm install selenium-webdriver --save'
+                bat 'npm install chromedriver --chromedriver_version=LATEST --save'
+                bat 'node newconf.js'
+            }
         }
-    }
+    }*/
 
     //Run the application
     //Stop application only with an interactive proceed input
     stage('Deliver'){
+        failFast true
         parallel{
             stage('Run'){
                 steps{
@@ -52,15 +63,29 @@ pipeline {
     }
     
     //Clean the data in MongoDB Database
-    //Output the .csv file in jenkins workspace
-    stage('Build & Run Python file'){
+    //Push Docker image into the dockerhub
+    stage('Build Python file'){
         steps{
             dir("majorProj/python"){
                 bat 'docker-compose build'
+                script{
+                    withDockerRegistry(credentialsId: 'credentials') {
+                        //push image into dockerhub
+                        bat 'docker-compose push'
+                    }
+                }
+            }
+        }
+    }
+
+    //Run the python file & output the .csv file in jenkins workspace
+    stage('Run Python file'){
+        steps{
+            dir("majorProj/python"){
                 bat 'docker-compose up'
             }
         }
-    }   
+    }    
   }
 }
     

@@ -151,7 +151,7 @@ export class UsersComponent implements OnInit {
     this.userService.addUser(this.myForm.value).subscribe((data) => {
       this.results = data;
       console.log(this.results)
-
+      window.location.reload();
     });
 
     //dismiss modal
@@ -159,6 +159,9 @@ export class UsersComponent implements OnInit {
     window.location.reload();
   }
 
-
+  onItemChange(value: any) {
+    var radioValue = value;
+    console.log(" Value is : ", radioValue);
+  }
 
 }
