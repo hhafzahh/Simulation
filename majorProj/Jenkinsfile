@@ -142,7 +142,7 @@ pipeline {
             MP Automation ''', to: '$DEFAULT_RECIPIENTS' , attachmentsPattern: 'majorProj/python/MP_dataset.csv'
         }
 
-        //Sends email with build log only if any of the builds is unsuccessful
+        /*//Sends email with build log only if any of the builds is unsuccessful
         unsuccessful{
 
             emailext attachLog: true,
@@ -158,7 +158,7 @@ pipeline {
             With help of jenkin plugin,
             MP Automation ''', to: '$DEFAULT_RECIPIENTS'
 
-        }
+        }*/
     }
 }
     
