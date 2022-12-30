@@ -119,11 +119,32 @@ pipeline {
         }
     }    
   }
-  //send email logs for every build
+  //send email logs and/or output file for every build based on the result status
+  //sends email to the person who initiated the build!
   post {
-        always {
 
-            //sends email to the person who initiated the build!
+        //Sends email with build log & dataset  if build is successful
+        success  {
+
+            archiveArtifacts artifacts: 'majorProj/python/MP_dataset.csv', followSymlinks: false
+
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', to: '$DEFAULT_RECIPIENTS' , attachmentsPattern: 'majorProj/python/MP_dataset.csv'
+        }
+
+        //Sends email with build log only if any of the builds is unsuccessful
+        unsuccessful{
+
             emailext attachLog: true,
             
             subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
@@ -136,6 +157,7 @@ pipeline {
             Thanks 
             With help of jenkin plugin,
             MP Automation ''', to: '$DEFAULT_RECIPIENTS'
+
         }
     }
 }
