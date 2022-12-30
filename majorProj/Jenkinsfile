@@ -1,6 +1,11 @@
 pipeline {
   agent any
   tools {nodejs "Node-Build"}
+
+  //on a global level, pipeline should only run at most 30mins,anything more than that will be aborted.
+  options{
+      timeout(time:30,unit:'MINUTES')
+  }
     
   stages {
 
@@ -11,15 +16,15 @@ pipeline {
       }
     }
 
-    //Build stage: Build the frontend & backend of the application 
-    //assuming docker desktop is running in the background
+    //Build stage: Build the frontend & backend of the application
     stage('Build Project') {
         steps {
            dir("majorProj"){
                 bat 'docker-compose build'
                 script{
+
+                    //login into docker and push the image into docker hub
                     withDockerRegistry(credentialsId: 'credentials') {
-                        //push image into dockerhub
                         bat 'docker-compose push'
                     }
                 }
@@ -27,17 +32,31 @@ pipeline {
         }
     }
 
-    //Test Stage
-    /*stage('Test'){
-        steps{
-            dir("majorProj/src/seleniumTesting"){
-                
-                bat 'npm install selenium-webdriver --save'
-                bat 'npm install chromedriver --chromedriver_version=LATEST --save'
-                bat 'node newconf.js'
+    /*
+    stage('Test'){
+        parallel{
+            stage('Open LocalHost'){
+                steps{
+                    dir("majorProj"){
+                        bat 'docker-compose up'
+                    }
+                }
+            }
+            //Test Stage
+            stage('Testing'){
+                steps{
+                    dir("majorProj/src/seleniumTesting"){
+                        
+                        bat 'npm install selenium-webdriver --save'
+                        bat 'npm install chromedriver --chromedriver_version=LATEST --save'
+                        bat 'node newconf.js'
+                        bat 'docker-compose down'
+                    }
+                }
             }
         }
-    }*/
+    }
+    */
 
     //Run the application
     //Stop application only with an interactive proceed input
@@ -52,9 +71,22 @@ pipeline {
                 }
             }
             stage('Stop'){
+
+                //interactive input as to proceed or continue the server
+                input{
+                    message "Proceed to stop server?"
+                    ok "Yes"
+                }
+                
+                //20 minute timeout if input is not given
+                options{
+                    timeout(time:20,unit:'MINUTES')
+                }
+                
                 steps{
-                    input('Proceed to stop server?')
+                    //once proceed is clicked or reached time limit timeout then stop docker
                     dir("majorProj"){
+                        echo 'Server Down!'
                         bat 'docker-compose down'
                     }
                 }
@@ -87,5 +119,24 @@ pipeline {
         }
     }    
   }
+  //send email logs for every build
+  post {
+        always {
+
+            //sends email to the person who initiated the build!
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', recipientProviders: [[$class: 'RequesterRecipientProvider']]
+        }
+    }
 }
     
