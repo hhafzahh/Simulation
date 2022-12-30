@@ -124,7 +124,7 @@ pipeline {
   post {
 
         //Sends email with build log & dataset  if build is successful
-        success  {
+        success{
 
             archiveArtifacts artifacts: 'majorProj/python/MP_dataset.csv', followSymlinks: false
 
