@@ -135,7 +135,7 @@ pipeline {
             
             Thanks 
             With help of jenkin plugin,
-            MP Automation ''', recipientProviders: [[$class: 'RequesterRecipientProvider']], to: 'majorprojectreceiver@gmail.com'
+            MP Automation ''', recipientProviders:  [requestor()]
         }
     }
 }
