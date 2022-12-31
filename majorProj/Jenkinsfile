@@ -12,7 +12,7 @@ pipeline {
      //Checkout Git Stage 
     stage('Git') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/Jenkins_Demo_Hafsah']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/MP_2022.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/Demo']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/MP_2022.git']]])
       }
     }
 
