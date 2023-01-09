@@ -28,7 +28,7 @@ const ObjectId = require('mongodb').ObjectId;
 var db;
 
 
-MongoClient.connect('mongodb+srv://test1:testone1@cluster0.s4jld.mongodb.net/Major-Proj?retryWrites=true&w=majority', {
+MongoClient.connect('yourstring', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, (err, database) => {
