@@ -39,7 +39,7 @@ onSubmit(){
     return;
   }
   
-  this.authService.authUser(this.myForm.value.username,this.myForm.value.password).subscribe(data =>
+  this.authService.authUser(this.myForm.value.username,this.myForm.value.email,this.myForm.value.password).subscribe(data =>
     {
       this.results = data;
       console.log(this.results)
@@ -58,7 +58,7 @@ onSubmit(){
       else{
 
         //else if not successful then alert 
-        alert("Wrong Username or password")
+        alert("Wrong Credentials, Pls Try Again!")
 
       }
 

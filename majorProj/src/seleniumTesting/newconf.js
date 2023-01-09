@@ -14,6 +14,7 @@ driver.get('http://localhost:4200').then(function () {
     driver.findElement(By.xpath("/html/body/app-root/app-login/div/div/div/div/form/button")).click().then(function () {
         
         driver.sleep(1000);
+        driver.navigate().refresh();
         driver.get('http://localhost:4200/home')
         driver.getTitle().then(title => {
             if (title.localeCompare("List of Issues")) {

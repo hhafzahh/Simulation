@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  pythonapp:
+    build: .
+    command: python3 automation_mp.py
+    image: haffydockerid/automation
+    volumes:
+      - .:/usr/src/app

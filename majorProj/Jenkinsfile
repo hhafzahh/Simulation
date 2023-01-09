@@ -1,0 +1,164 @@
+pipeline {
+  agent any
+  tools {nodejs "Node-Build"}
+
+  //on a global level, pipeline should only run at most 30mins,anything more than that will be aborted.
+  options{
+      timeout(time:30,unit:'MINUTES')
+  }
+    
+  stages {
+
+     //Checkout Git Stage 
+    stage('Git') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/Jenkins_Demo_Hafsah']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/MP_2022.git']]])
+      }
+    }
+
+    //Build stage: Build the frontend & backend of the application
+    stage('Build Project') {
+        steps {
+           dir("majorProj"){
+                bat 'docker-compose build'
+                script{
+
+                    //login into docker and push the image into docker hub
+                    withDockerRegistry(credentialsId: 'credentials') {
+                        bat 'docker-compose push'
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+    stage('Test'){
+        parallel{
+            stage('Open LocalHost'){
+                steps{
+                    dir("majorProj"){
+                        bat 'docker-compose up'
+                    }
+                }
+            }
+            //Test Stage
+            stage('Testing'){
+                steps{
+                    dir("majorProj/src/seleniumTesting"){
+                        
+                        bat 'npm install selenium-webdriver --save'
+                        bat 'npm install chromedriver --chromedriver_version=LATEST --save'
+                        bat 'node newconf.js'
+                        bat 'docker-compose down'
+                    }
+                }
+            }
+        }
+    }
+    */
+
+    //Run the application
+    //Stop application only with an interactive proceed input
+    stage('Deliver'){
+        failFast true
+        parallel{
+            stage('Run'){
+                steps{
+                    dir("majorProj"){
+                        bat 'docker-compose up'
+                    }
+                }
+            }
+            stage('Stop'){
+
+                //interactive input as to proceed or continue the server
+                input{
+                    message "Proceed to stop server?"
+                    ok "Yes"
+                }
+                
+                //20 minute timeout if input is not given
+                options{
+                    timeout(time:20,unit:'MINUTES')
+                }
+                
+                steps{
+                    //once proceed is clicked or reached time limit timeout then stop docker
+                    dir("majorProj"){
+                        echo 'Server Down!'
+                        bat 'docker-compose down'
+                    }
+                }
+            }
+        }
+    }
+    
+    //Clean the data in MongoDB Database
+    //Push Docker image into the dockerhub
+    stage('Build Python file'){
+        steps{
+            dir("majorProj/python"){
+                bat 'docker-compose build'
+                script{
+                    withDockerRegistry(credentialsId: 'credentials') {
+                        //push image into dockerhub
+                        bat 'docker-compose push'
+                    }
+                }
+            }
+        }
+    }
+
+    //Run the python file & output the .csv file in jenkins workspace
+    stage('Run Python file'){
+        steps{
+            dir("majorProj/python"){
+                bat 'docker-compose up'
+            }
+        }
+    }    
+  }
+  //send email logs and/or output file for every build based on the result status
+  //sends email to the person who initiated the build!
+  post {
+
+        //Sends email with build log & dataset  if build is successful
+        success{
+
+            archiveArtifacts artifacts: 'majorProj/python/MP_dataset.csv', followSymlinks: false
+
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', to: '$DEFAULT_RECIPIENTS' , attachmentsPattern: 'majorProj/python/MP_dataset.csv'
+        }
+
+        //Sends email with build log only if any of the builds is unsuccessful
+        unsuccessful{
+
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', to: '$DEFAULT_RECIPIENTS'
+
+        }
+    }
+}
+    
