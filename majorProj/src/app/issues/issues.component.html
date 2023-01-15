@@ -1,4 +1,3 @@
-
 <div style="text-align:center">
     <h1>Issues</h1>
     <br>
@@ -13,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <p><input class="form-control" formControlName="occuranceDateTime" id=occuranceDateTime></p>
-                        <p style= "text-align: left" >(Occurance date: DD/MM/YYYY HH:MM)</p>
+                        <p style="text-align: left">(Occurance date: DD/MM/YYYY HH:MM)</p>
                     </div>
                 </div>
             </div>
@@ -21,7 +20,7 @@
             <div class="row">
                 <div class="container">
                     <div class="col-sm-2 col-form-label">
-                        <label for="requestorName" >Requestor Name: </label>
+                        <label for="requestorName">Requestor Name: </label>
                     </div>
                     <div class="col-sm-6">
                         <p><input class="form-control" formControlName="requestorName" id=requestorName></p>
@@ -49,25 +48,28 @@
                         <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                              value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Analytics - Dashboard" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios1">
                                 Analytics - Dashboard
                             </label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                              value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Portal - website" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios2">
                                 Portal - website
                             </label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                              value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Enterprise - Access" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios3">
                                 Enterprise - Access
                             </label>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,25 +84,27 @@
                         <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
-                              value="Analytics Team" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Analytics Team" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios1">
                                 Analytics Team
                             </label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
-                              value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios2">
                                 Portal Team
                             </label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
-                              value="Enterprise Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                                value="Enterprise Team" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
                             <label class="form-check-label" for="exampleRadios3">
                                 Enterprise Team
                             </label>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,18 +112,50 @@
 
             <div class="row">
                 <div class="container">
-                    <div class="col-sm-2 col-form-label">
-                        <label for="status" >Status: </label>
+                    <div class="col-sm-1 col-form-label">
+                        <label for="status">Status: </label>
                     </div>
-                    <div class="col-sm-6">
-                        <p><input class="form-control" formControlName="status" id=status></p>
+                    <div class="col-sm-8">
+                        <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Pending assessment" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Pending assessment
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Pending user information" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Pending user information
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Resolved" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Resolved
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Closed" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios4">
+                                Closed
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="container">
-                    <div class="col-sm-2 col-form-label">       
+                    <div class="col-sm-2 col-form-label">
                         <label for="remarks">Remarks: </label>
                     </div>
                     <div class="col-sm-6">
@@ -136,138 +172,176 @@
 
         <!--Update-->
         <div *ngIf="checkSubmitType() == true">
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="occuranceDateTime">Occurance Date Time: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="occuranceDateTime" id="occuranceDateTime"
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="occuranceDateTime">Occurance Date Time: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="occuranceDateTime" id="occuranceDateTime"
                                 value={{issue.occuranceDateTime}}></p>
-                                <p style= "text-align: left" >(Occurance date: DD/MM/YYYY HH:MM)</p>
-                        </div>
+                        <p style="text-align: left">(Occurance date: DD/MM/YYYY HH:MM)</p>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="requestorName">Requestor Name: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="requestorName" id=requestorName
-                                    value={{issue.requestorName}}></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="description">Issue Description: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="description" id=description
-                                    value={{issue.description}}></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="area">Business Area: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                                  value="Analytics - Dashboard" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Analytics - Dashboard
-                                </label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                                  value="Portal - website" [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Portal - website
-                                </label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
-                                  value="Enterprise - Access" [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios3">
-                                    Enterprise - Access
-                                </label>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="team">Assigned Team: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
-                                  value="Analytics Team" checked [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Analytics Team
-                                </label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="team" team="team" id="team"
-                                  value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Portal Team
-                                </label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
-                                  value="Enterprise Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
-                                <label class="form-check-label" for="exampleRadios3">
-                                    Enterprise Team
-                                </label>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="status">Status: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="status" id=status value={{issue.status}}>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="col-sm-2 col-form-label">
-                            <label for="remarks">Remarks: </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input class="form-control" formControlName="remarks" id=remarks value={{issue.remarks}}>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <p><button class="btn btn-primary" id="saveChanges" (click)="onSubmitUpdate()">Save Changes</button> </p>
-                    <p><button class="btn btn-danger" id="deleteBtn" (click)="deleteIssue(issue._id)"> Delete Issue </button></p>
                 </div>
             </div>
-        
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="requestorName">Requestor Name: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="requestorName" id=requestorName
+                                value={{issue.requestorName}}></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="description">Issue Description: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="description" id=description
+                                value={{issue.description}}></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="area">Business Area: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                value="Analytics - Dashboard" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Analytics - Dashboard
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                value="Portal - website" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Portal - website
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="area" name="area" id="area"
+                                value="Enterprise - Access" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Enterprise - Access
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="team">Assigned Team: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <p><input class="form-control" formControlName="area" id=area value={{issue.area}}></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                                value="Analytics Team" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Analytics Team
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" team="team" id="team"
+                                value="Portal Team" [checked]="true" (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Portal Team
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="team" name="team" id="team"
+                                value="Enterprise Team" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Enterprise Team
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-1 col-form-label">
+                        <label for="status">Status: </label>
+                    </div>
+                    <div class="col-sm-8">
+                        <!-- <p><input class="form-control" formControlName="area" id=area></p> -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Pending assessment" checked [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Pending assessment
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Pending user information" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Pending user information
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Resolved" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Resolved
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="status" name="status"
+                                id="status" value="Closed" [checked]="true"
+                                (change)="onItemChange($any($event.target).value)">
+                            <label class="form-check-label" for="exampleRadios4">
+                                Closed
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-2 col-form-label">
+                        <label for="remarks">Remarks: </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><input class="form-control" formControlName="remarks" id=remarks value={{issue.remarks}}>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p><button class="btn btn-primary" id="saveChanges" (click)="onSubmitUpdate()">Save Changes</button>
+                </p>
+                <p><button class="btn btn-danger" id="deleteBtn" (click)="deleteIssue(issue._id)"> Delete Issue
+                    </button></p>
+            </div>
+        </div>
+
 
     </form>
 </div>
