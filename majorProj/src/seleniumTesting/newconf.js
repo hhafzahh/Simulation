@@ -34,7 +34,7 @@ driver.get('http://localhost:4200').then(function () {
                         driver.findElement(By.id("description")).sendKeys("Issue description test")
                         driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[4]/div/div[2]/div[1]/input")).click()
                         driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[5]/div/div[2]/div[1]/input")).click()
-                        driver.findElement(By.id("status")).sendKeys("Pending test")
+                        driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[6]/div/div[2]/div[1]/input")).click()
                         driver.findElement(By.id("remarks")).sendKeys("testing")
 
                         //Click on the create btn - insert func
@@ -79,9 +79,9 @@ driver.get('http://localhost:4200').then(function () {
                                         if (currentURL === "http://localhost:4200/issueForm/", currentTixNum) { //Remove ",currentTixNum" (fail)
                                             console.log("Edit btn test: Passed!");
 
-                                            driver.findElement(By.id("status")).sendKeys("Edited")
                                             driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[4]/div/div[2]/div[2]/input")).click()
                                             driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[5]/div/div[2]/div[2]/input")).click()
+                                            driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[6]/div/div[2]/div[4]/input")).click()
                                             driver.findElement(By.xpath("/html/body/app-root/app-issues/div/form/div/div[8]/p[1]/button")).click().then(async found => {
                                                 await driver.wait(until.alertIsPresent());
                                                 // Store the alert in a variable
