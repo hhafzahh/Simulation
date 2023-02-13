@@ -46,7 +46,7 @@ for index, row in df.iterrows():
         pass
         exceptionList.append(row['_id'])
         #print(exceptionList)
-        dateTime_check = row['_id'], 'Invalid datetime format.'
+        dateTime_check = exceptionList, 'Invalid datetime format.'
         print(dateTime_check)
 
 if len(exceptionList) == 0:
