@@ -1,0 +1,139 @@
+pipeline {
+  agent any
+  tools {nodejs "Node-Build"}
+  environment {
+        PATH = "$PATH:/usr/local/bin"
+  }
+  
+  //on a global level, pipeline should only run at most 30mins,anything more than that will be aborted.
+  options{
+      timeout(time:30,unit:'MINUTES')
+  }
+    
+  stages {
+
+     //Checkout Git Stage 
+    stage('Git') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '626479c2-ec3f-46d5-8e32-b5d566e57f8d', url: 'https://github.com/hhafzahh/Simulation.git']]])
+      }
+    }
+
+    //Build stage: Build the frontend & backend of the application
+    stage('Build Project') {
+        steps {
+           dir("majorProj"){
+                sh 'docker-compose build'
+               //sh 'docker-compose push'
+            }
+        }
+    }
+
+
+    //Run the application
+    //Stop application only with an interactive proceed input
+    stage('Deliver'){
+        failFast true
+        parallel{
+            stage('Run'){
+                steps{
+                    dir("majorProj"){
+                        sh 'docker-compose up'
+                    }
+                }
+            }
+            stage('Stop'){
+
+                //interactive input as to proceed or continue the server
+                input{
+                    message "Proceed to stop server?"
+                    ok "Yes"
+                }
+                
+                //20 minute timeout if input is not given
+                options{
+                    timeout(time:20,unit:'MINUTES')
+                }
+                
+                steps{
+                    //once proceed is clicked or reached time limit timeout then stop docker
+                    dir("majorProj"){
+                        echo 'Server Down!'
+                        sh 'docker-compose down'
+                    }
+                }
+            }
+        }
+    }
+    
+    //Clean the data in MongoDB Database
+    //Push Docker image into the dockerhub
+    stage('Build Python file'){
+        steps{
+            dir("majorProj/python"){
+                sh 'docker-compose build'
+                // script{
+                //     withDockerRegistry(credentialsId: 'credentials') {
+                //         //push image into dockerhub
+                //         sh 'docker-compose push'
+                //     }
+                // }
+            }
+        }
+    }
+
+    //Run the python file & output the .csv file in jenkins workspace
+    stage('Run Python file'){
+        steps{
+            dir("majorProj/python"){
+                sh 'docker-compose up'
+                //archiveArtifacts allowEmptyArchive: true, artifacts: 'MP_dataset.csv', followSymlinks: false, onlyIfSuccessful: true
+            }
+             
+        }
+    }    
+  }
+  //send email logs and/or output file for every build based on the result status
+  //sends email to the person who initiated the build!
+  post {
+
+        //Sends email with build log & dataset  if build is successful
+        success{
+
+            archiveArtifacts artifacts: 'majorProj/python/MP_dataset.csv', followSymlinks: false
+
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', to: '$DEFAULT_RECIPIENTS' , attachmentsPattern: 'majorProj/python/MP_dataset.csv'
+        }
+
+        //Sends email with build log only if any of the builds is unsuccessful
+        unsuccessful{
+
+            emailext attachLog: true,
+            
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            
+            body: 
+            
+            '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+            Check console output at $BUILD_URL to view the results.
+            
+            Thanks 
+            With help of jenkin plugin,
+            MP Automation ''', to: '$DEFAULT_RECIPIENTS'
+
+        }
+    }
+   
+}
+    
