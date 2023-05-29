@@ -1,7 +1,10 @@
 pipeline {
   agent any
   tools {nodejs "Node-Build"}
-
+  environment {
+        PATH = "$PATH:/usr/local/bin"
+  }
+  
   //on a global level, pipeline should only run at most 30mins,anything more than that will be aborted.
   options{
       timeout(time:30,unit:'MINUTES')
@@ -20,43 +23,12 @@ pipeline {
     stage('Build Project') {
         steps {
            dir("majorProj"){
-                bat 'docker-compose build'
-                script{
-
-                    //login into docker and push the image into docker hub
-                    withDockerRegistry(credentialsId: 'credentials') {
-                        bat 'docker-compose push'
-                    }
-                }
+                sh 'docker-compose build'
+               //sh 'docker-compose push'
             }
         }
     }
 
-    /*
-    stage('Test'){
-        parallel{
-            stage('Open LocalHost'){
-                steps{
-                    dir("majorProj"){
-                        bat 'docker-compose up'
-                    }
-                }
-            }
-            //Test Stage
-            stage('Testing'){
-                steps{
-                    dir("majorProj/src/seleniumTesting"){
-                        
-                        bat 'npm install selenium-webdriver --save'
-                        bat 'npm install chromedriver --chromedriver_version=LATEST --save'
-                        bat 'node newconf.js'
-                        bat 'docker-compose down'
-                    }
-                }
-            }
-        }
-    }
-    */
 
     //Run the application
     //Stop application only with an interactive proceed input
@@ -66,7 +38,7 @@ pipeline {
             stage('Run'){
                 steps{
                     dir("majorProj"){
-                        bat 'docker-compose up'
+                        sh 'docker-compose up'
                     }
                 }
             }
@@ -87,7 +59,7 @@ pipeline {
                     //once proceed is clicked or reached time limit timeout then stop docker
                     dir("majorProj"){
                         echo 'Server Down!'
-                        bat 'docker-compose down'
+                        sh 'docker-compose down'
                     }
                 }
             }
@@ -99,13 +71,13 @@ pipeline {
     stage('Build Python file'){
         steps{
             dir("majorProj/python"){
-                bat 'docker-compose build'
-                script{
-                    withDockerRegistry(credentialsId: 'credentials') {
-                        //push image into dockerhub
-                        bat 'docker-compose push'
-                    }
-                }
+                sh 'docker-compose build'
+                // script{
+                //     withDockerRegistry(credentialsId: 'credentials') {
+                //         //push image into dockerhub
+                //         sh 'docker-compose push'
+                //     }
+                // }
             }
         }
     }
@@ -114,8 +86,10 @@ pipeline {
     stage('Run Python file'){
         steps{
             dir("majorProj/python"){
-                bat 'docker-compose up'
+                sh 'docker-compose up'
+                //archiveArtifacts allowEmptyArchive: true, artifacts: 'MP_dataset.csv', followSymlinks: false, onlyIfSuccessful: true
             }
+             
         }
     }    
   }
@@ -160,5 +134,6 @@ pipeline {
 
         }
     }
+   
 }
     
