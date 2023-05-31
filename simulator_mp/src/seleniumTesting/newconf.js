@@ -8,9 +8,9 @@ const driver = new webdriver.Builder()
 
 driver.get('http://localhost:4200').then(function () {
 
-    driver.findElement(By.id("username")).sendKeys("testUser")
-    driver.findElement(By.id("email")).sendKeys("testUser@email.com")
-    driver.findElement(By.id("password")).sendKeys("testuser")
+    driver.findElement(By.id("username")).sendKeys("User2Test")
+    driver.findElement(By.id("email")).sendKeys("User2@email.com")
+    driver.findElement(By.id("password")).sendKeys("User2Test")
     driver.findElement(By.xpath("/html/body/app-root/app-login/div/div/div/div/form/button")).click().then(function () {
         
         driver.sleep(1000);
@@ -65,7 +65,8 @@ driver.get('http://localhost:4200').then(function () {
                             let currentTixNum = await driver.findElement(By.xpath("/html/body/app-root/app-home/div[3]/table/tbody/tr[last()]/td[1]")).getText();
                             driver.findElements(By.xpath("/html/body/app-root/app-home/div[3]/table/tbody/tr")).then(function (rowsAfterInsert) {
                                 let numRowsAfter = rowsAfterInsert.length
-                                //console.log("numRowsAfter", numRowsAfter)
+
+                                console.log("numRowsAfter", numRowsAfter)
                                 if (numRowsAfter === numRows + 1) { //Remove "+1" (fail)
                                     console.log("Retrieve Issue test: Passed!");
 
@@ -162,7 +163,7 @@ driver.get('http://localhost:4200').then(function () {
 
                     }).then(null, function (err) {
                         if (err.name === "NoSuchElementError")
-                            console.log("Create btn test: Failed!");
+                            console.log("create btn test: Failed!");
                     });
                 })
             }
