@@ -16,10 +16,12 @@ The completed product aims to help simplify and speed up data transfer process, 
 Our team decided to create a solution to enhance task recording process in the operations team.
 We use other technologies to simulate the environment, and we use python for data cleaning and formatting.
 
-_To simulate the environment:_
-##### Technology Used Initially             | Alternative Used
-###### Pega [Java Low Code with SQL Database] | MEAN Stack [Angular with MongoDB Database]
-###### QlikSense                             | Tableau
+### _To simulate the environment:_
+| Technology Used Initially  |  Alternative Used |
+| ------------- | ------------- |
+| Pega [Java Low Code with SQL Database]  | MEAN Stack [Angular with MongoDB Database]  |
+| QlikSense   | Tableau  |
+
 ##### To make it better, Automation with Python and Jenkins
 
 ### Flow of the project
